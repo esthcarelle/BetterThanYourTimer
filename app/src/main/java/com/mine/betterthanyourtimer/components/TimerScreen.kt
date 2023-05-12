@@ -21,7 +21,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mine.betterthanyourtimer.MyTopAppBar
 import com.mine.betterthanyourtimer.getFormattedTime
 import com.mine.betterthanyourtimer.ui.theme.*
 import com.mine.betterthanyourtimer.viewModels.TimerViewModel
@@ -127,27 +126,6 @@ fun RoundedBoxCorner(time: String, bg: Color) {
             style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
         )
     }
-}
-
-@Composable
-fun CompletionBox(remainingTime: Long, totalTime: Long) {
-    val remaining = kotlin.math.ceil(((remainingTime * 100) / totalTime).toDouble()).toInt()
-    val completed = 100 - remaining
-
-    Row(
-        modifier = Modifier
-            .fillMaxSize(),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        RoundedBoxCorner(time = "COMPLETED $completed", bg = purple)
-        RoundedBoxCorner(time = "REMAINING $remaining", bg = red)
-    }
-}
-
-@Preview
-@Composable
-fun CompletionBoxPreview() {
-    TimerScreen(viewModel = TimerViewModel())
 }
 
 @Composable
