@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    TimerScreen(modifier = Modifier, viewModel = TimerViewModel())
+                    TimerScreen( viewModel = TimerViewModel())
                 }
             }
         }
@@ -65,10 +66,13 @@ fun MyTopAppBar(isRunning: Boolean, onStartClicked: () -> Unit, onResetClicked: 
                     .padding(top = 4.dp, start = 16.dp)
             )
             Text(
-                text = "T I M E R",
+                text = stringResource(id = R.string.title),
                 color = Color.White,
                 style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold),
-                modifier = Modifier.align(Alignment.Center).padding(4.dp).wrapContentHeight()
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(4.dp)
+                    .wrapContentHeight()
             )
             IconButton(
                 onClick = if (isRunning) onResetClicked else onStartClicked,

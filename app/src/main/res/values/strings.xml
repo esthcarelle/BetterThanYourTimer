@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BetterThanYourTimer</string>
+    <string name="title">BEST TIMER</string>
+    <string name="timer">TIMER</string>
 </resources>
