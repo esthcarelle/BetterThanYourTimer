@@ -1,4 +1,4 @@
-package com.mine.betterthanyourtimer
+package com.mine.betterthanyourtimer.utils
 
 import java.util.concurrent.TimeUnit
 

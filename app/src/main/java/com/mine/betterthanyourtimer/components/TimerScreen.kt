@@ -1,7 +1,6 @@
 package com.mine.betterthanyourtimer.components
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,17 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.inset
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mine.betterthanyourtimer.getFormattedTime
+import com.mine.betterthanyourtimer.utils.getFormattedTime
 import com.mine.betterthanyourtimer.ui.theme.*
 import com.mine.betterthanyourtimer.viewModels.TimerViewModel
-import com.mine.betterthanyourtimer.R
 
 const val CIRCULAR_TIMER_RADIUS = 350f
 const val TOTAL_TIME = TimerViewModel.totalTime
@@ -34,7 +27,6 @@ const val TOTAL_TIME = TimerViewModel.totalTime
 fun TimerScreen(viewModel: TimerViewModel) {
     val remainingTime = viewModel.remainingTime.collectAsState().value
     val isRunning = viewModel.isRunning.collectAsState().value
-
 
     Scaffold(topBar = {
         MyTopAppBar(
@@ -90,27 +82,6 @@ fun TimeRemaining(modifier: Modifier, timeRemaining: Long) {
 }
 
 @Composable
-fun Time(time: Long) {
-    val formattedTime = getFormattedTime(millis = time)
-
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 32.dp, bottom = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = stringResource(id = R.string.title), color = green, style = MaterialTheme.typography.subtitle2)
-        Spacer(modifier = Modifier.size(8.dp))
-        Text(
-            text = formattedTime,
-            color = green,
-            style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold)
-        )
-    }
-
-}
-
-@Composable
 fun RoundedBoxCorner(time: String, bg: Color) {
     Box(
         modifier = Modifier
@@ -125,35 +96,5 @@ fun RoundedBoxCorner(time: String, bg: Color) {
             modifier = Modifier.align(Alignment.Center),
             style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold)
         )
-    }
-}
-
-@Composable
-fun CircularTimer(
-    transitionData: CircularTransitionData,
-    modifier: Modifier = Modifier
-) {
-    Canvas(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(32.dp)
-            .requiredHeight(CIRCULAR_TIMER_RADIUS.dp)
-    ) {
-        inset(size.width / 2 - CIRCULAR_TIMER_RADIUS, size.height / 2 - CIRCULAR_TIMER_RADIUS) {
-            drawCircle(
-                color = gray,
-                radius = CIRCULAR_TIMER_RADIUS,
-                center = center,
-                style = Stroke(width = 70f, cap = StrokeCap.Round)
-            )
-
-            drawArc(
-                startAngle = 270f, // 270 is 0 degree
-                sweepAngle = transitionData.progress,
-                useCenter = false,
-                color = transitionData.color,
-                style = Stroke(width = 70f, cap = StrokeCap.Round)
-            )
-        }
     }
 }

@@ -32,7 +32,7 @@ fun updateCircularTransitionData(
     val transition = updateTransition(targetState = remainingTime, label = "Circular transition")
 
     val progress = transition.animateFloat(
-        transitionSpec = { tween(800, easing = LinearEasing) }, label = ""
+        transitionSpec = { tween(800, easing = LinearEasing) }, label = "Linear transition"
     ) { remTime ->
         if (remTime < 0) {
             360f

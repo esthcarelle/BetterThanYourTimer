@@ -53,3 +53,4 @@ class TimerViewModel : ViewModel() {
         const val interval = 1 * 1000L
     }
 }
+
