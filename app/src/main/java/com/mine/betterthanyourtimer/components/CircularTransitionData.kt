@@ -57,3 +57,4 @@ fun updateCircularTransitionData(
 
     return remember(transition) { CircularTransitionData(progress = progress, color = color) }
 }
+
